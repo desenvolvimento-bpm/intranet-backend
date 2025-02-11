@@ -186,5 +186,5 @@ router.get("/fichasentrada", async (req, res) => {
 
 
 
-
+//exportação das rotas.
 module.exports = router;
