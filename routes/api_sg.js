@@ -829,9 +829,10 @@ GROUP BY nfs.idcfop, nfs.numeronf, nfs.dataemissao;`;
         const notas = (await pgPool.query(sqlNotas, [numeroprojeto, datainicial, datafinal])).rows || [];
         const notasRemessa = (await pgPool.query(sqlNotasRemessa, [numeroprojeto, datainicial, datafinal])).rows || [];
         const valoraproxcontratado = (await pgPool.query(sqlValorAproxContratado, [numeroprojeto])).rows || [];
-        const valorRecebido = (await pgPool.query(sqlValorRecebido)).rows || [];
+        const valorRecebido = (await pgPool.query(sqlValorRecebido, [numeroprojeto])).rows || [];
         const NotasDevolucaoEntrada = (await pgPool.query(sqlNotasDevolucaoEntrada, [numeroprojeto, datainicial, datafinal])).rows || [];
         const paginaInicial = (await pgPool.query(sqlPaginaInicial, [numeroprojeto])).rows || [];
+
 
         res.json({ expedicao, devolucao, notas, notasRemessa, valoraproxcontratado, valorRecebido, NotasDevolucaoEntrada, paginaInicial });
 
