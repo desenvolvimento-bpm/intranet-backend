@@ -744,7 +744,7 @@ GROUP BY nfs.idcfop, nfs.numeronf, nfs.dataemissao;`;
                 RECEBER.IDFILIAL,
                 RECEBER.VALORORIGINAL,
                 RECEBER.VENCIMENTO,
-                RECEBER.IDPROJETO,
+                RECEBER.numeroprojeto,
                 RECEBER.IDVENDREPRE,
                 RECEBER.TIPOCLIFOREMP,
                 RECEBER_BAIXA.DATA,
@@ -778,7 +778,7 @@ GROUP BY nfs.idcfop, nfs.numeronf, nfs.dataemissao;`;
                 AD.IDFILIAL,
                 0 AS VALORORIGINAL,
                 '1900-01-01' AS VENCIMENTO,
-                AD.PEX_IDPROJETO AS IDPROJETO,
+                AD.pex_numero_projeto AS numeroprojeto,
                 AD.PEX_IDVENDREPRE AS IDVENDREPRE,
                 AD.TIPOCLIFOREMP,
                 AD.DATA,
@@ -797,8 +797,7 @@ GROUP BY nfs.idcfop, nfs.numeronf, nfs.dataemissao;`;
             JOIN PROJETO PJ ON PJ.IDPROJETO = AD.PEX_IDPROJETO
             WHERE AD.STATUS <> 3
         ) DADOS
-        WHERE DADOS.IDPROJETO = 799;
-        `;
+        WHERE DADOS.numeroprojeto = $1;`;
 
         const sqlNotasDevolucaoEntrada = `SELECT SUM(nfei.valortotal) AS valor_total,
         nfe.idcfop,
