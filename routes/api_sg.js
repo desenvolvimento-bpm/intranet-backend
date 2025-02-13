@@ -651,7 +651,7 @@ JOIN cfop ON nfs.idcfop = cfop.idcfop
 JOIN projeto pro ON nfs.idprojeto = pro.idprojeto 
 WHERE gp.idgrupo IN ('143', '163') 
   AND nfs.status IN ('2') 
-  AND cfop.idcfop IN (5101, 6101, 6922, 5922, 5107, 6107, 5949, 6949, 5116, 6116) 
+  AND cfop.idcfop IN (5101, 6101, 5107, 6107, 5949, 6949, 5116, 6116) 
   AND nfs.numeroprojeto = $1 
   AND nfs.dataemissao BETWEEN $2 AND $3
 GROUP BY pro.idprojeto, pro.descricao, nfs.numeroprojeto,i.referencia1, i.referencia2, i.referencia3, gp.descricao;
@@ -675,7 +675,7 @@ JOIN cfop ON nfe.idcfop = cfop.idcfop
 JOIN projeto pro ON nfe.idprojeto = pro.idprojeto 
 WHERE gp.idgrupo IN ('143', '163') 
 AND nfe.status IN ('2') 
-AND cfop.idcfop in (1949, 2949, 1201, 1101, 2201, 1107, 1207, 2107, 2207)
+AND cfop.idcfop in (1201, 1101, 2201, 1107, 1207, 2107, 2207)
 AND nfe.numeroprojeto = $1 
 AND nfe.dataemissao BETWEEN $2 AND $3
 GROUP BY pro.idprojeto, pro.descricao, nfe.numeroprojeto,i.referencia1, i.referencia2, i.referencia3, i.descricao, gp.descricao`;
